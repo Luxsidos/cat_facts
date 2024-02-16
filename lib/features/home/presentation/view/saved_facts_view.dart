@@ -15,7 +15,7 @@ class SavedFactsView extends StatelessWidget {
           debugPrint('titles ${state.factTitles}');
 
           if (state.factTitles.isEmpty) {
-            const Center(
+            return const Center(
                 child: Text(
               "no saved facts",
               style: TextStyle(color: dark, fontSize: 18),

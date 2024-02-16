@@ -35,5 +35,6 @@ class HomeState extends Equatable {
         statusFacts,
         factModel,
         statusFact,
+        factTitles,
       ];
 }
