@@ -4,6 +4,7 @@ import 'package:formz/formz.dart';
 import 'package:task_cat/assets/colors/colors.dart';
 import 'package:task_cat/features/common/controllers/show_pop_up/show_pop_up_bloc.dart';
 import 'package:task_cat/features/home/presentation/controller/bloc/home_bloc.dart';
+import 'package:task_cat/features/home/presentation/controller/home_controller.dart';
 import 'package:task_cat/features/home/presentation/view/saved_facts_view.dart';
 import 'package:task_cat/features/home/presentation/widget/dialogs/w_random_fact_dialog.dart';
 import 'package:task_cat/features/home/presentation/widget/w_shimmer.dart';
@@ -16,6 +17,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final vmController = HomeController();
+
   @override
   void initState() {
     context.read<HomeBloc>().add(GetFactsApiEvent(onError: () {
@@ -43,7 +46,9 @@ class _HomeViewState extends State<HomeView> {
             title: const Text("FACTS ABOUT CATS"),
             actions: [
               TextButton.icon(
-                onPressed: () => context.read<HomeBloc>().add(AddFactTitlesEvent(state.factsModel.map((e) => e.text).toList())),
+                onPressed: () {
+                  context.read<HomeBloc>().add(AddFactTitlesEvent(state.factsModel.map((e) => e.text).toList()));
+                },
                 label: const Text("save all"),
                 icon: const Icon(Icons.all_inbox),
               )
@@ -72,8 +77,8 @@ class _HomeViewState extends State<HomeView> {
             onPressed: () {
               showDialog(
                 context: context,
-                builder: (context) => const WRandomFactDialog(),
-              );
+                builder: (context) => WRandomFactDialog(imageProvider: vmController.imageProvider),
+              ).then((value) => vmController.clearImageCache());
             },
             backgroundColor: blue,
             foregroundColor: white,

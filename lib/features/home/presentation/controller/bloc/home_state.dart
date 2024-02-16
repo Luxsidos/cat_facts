@@ -30,11 +30,5 @@ class HomeState extends Equatable {
       );
 
   @override
-  List<Object> get props => [
-        factsModel,
-        statusFacts,
-        factModel,
-        statusFact,
-        factTitles,
-      ];
+  List<Object> get props => [factsModel, statusFacts, factModel, statusFact, factTitles];
 }

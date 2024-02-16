@@ -6,7 +6,8 @@ import 'package:task_cat/features/home/presentation/controller/bloc/home_bloc.da
 import 'package:task_cat/features/home/presentation/widget/w_shimmer.dart';
 
 class WRandomFactDialog extends StatefulWidget {
-  const WRandomFactDialog({super.key});
+  final ImageProvider imageProvider;
+  const WRandomFactDialog({super.key, required this.imageProvider});
 
   @override
   State<WRandomFactDialog> createState() => _WRandomFactDialogState();
@@ -32,15 +33,13 @@ class _WRandomFactDialogState extends State<WRandomFactDialog> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    "https://cataas.com/cat",
-                    key: ValueKey(DateTime.now()),
-                  ),
+                  child: Image(image: widget.imageProvider),
                 ),
                 const SizedBox(height: 16),
                 state.statusFact.isSuccess
                     ? Text(
                         state.factModel.text,
+                        maxLines: 3,
                         style: const TextStyle(fontSize: 18),
                       )
                     : const SizedBox(height: 120, child: WShimmer()),

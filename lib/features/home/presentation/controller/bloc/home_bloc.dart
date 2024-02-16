@@ -51,7 +51,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<AddFactTitlesEvent>((event, emit) {
-      emit(state.copyWith(factTitles: [...state.factTitles, ...event.titles]));
+      emit(state.copyWith(factTitles: event.titles));
     });
   }
 }

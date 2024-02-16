@@ -12,7 +12,6 @@ class SavedFactsView extends StatelessWidget {
       appBar: AppBar(title: const Text("Saved facts")),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          debugPrint('titles ${state.factTitles}');
 
           if (state.factTitles.isEmpty) {
             return const Center(
